@@ -42,7 +42,7 @@ public class RegisterController {
             HomePageController homepagecontrollerobject = new HomePageController();
             homepagecontrollerobject.setRememberBool("no");
             try {
-                homepagecontrollerobject.NextWindow("fxmlfiles/uhomepage.fxml");
+                homepagecontrollerobject.NextWindow("fxmlfiles/homepage.fxml");
             } catch (Exception e) {
                 System.out.print(e.getMessage());
             }

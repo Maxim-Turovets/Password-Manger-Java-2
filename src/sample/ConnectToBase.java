@@ -12,8 +12,8 @@ public class ConnectToBase {
 
     public int PasswordMatchChecker(String pass) {
         try {
-            Class.forName("org.sqlite.JDBC");
-            Connection connection = DriverManager.getConnection("jdbc:sqlite:DataBase.db");
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/maximtr?useSSL=false","maxturovets","database33");
 
             Statement state = connection.createStatement();
             ResultSet res;
@@ -37,12 +37,12 @@ public class ConnectToBase {
     public int Register(String RegisterPass) {
         if (RegisterPass.isEmpty() == false) {
             try {
-                Class.forName("org.sqlite.JDBC");
-                Connection connection = DriverManager.getConnection("jdbc:sqlite:DataBase.db");
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection connection = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/maximtr?useSSL=false","maxturovets","database33");
 
                 Statement state = connection.createStatement();
 
-                String stringSQL = "INSERT INTO PasswordTable (Password) VALUES ('" + RegisterPass + "')";
+                String stringSQL = "INSERT INTO PasswordTable (ID,Password) VALUES ('2','" + RegisterPass + "')";
 
                 state.executeUpdate(stringSQL);
 
@@ -52,7 +52,7 @@ public class ConnectToBase {
                 connection.close();
 
             } catch (Exception e) {
-                System.out.print("!!!"+e.getMessage());
+                System.out.println("!!!"+e.getMessage());
             }
         }
         return PasswordMatchChecker(RegisterPass);
@@ -60,15 +60,16 @@ public class ConnectToBase {
 
     public void CreateTable(int index) {
         try {
-            Class.forName("org.sqlite.JDBC");
-            Connection conn = DriverManager.getConnection("jdbc:sqlite:DataBaseUser" + index + ".db");
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/maximtr?useSSL=false","maxturovets","database33");
+
             Statement state = conn.createStatement();
-            String stringSQL = "CREATE TABLE UserTable ( id INTEGER PRIMARY KEY AUTOINCREMENT ,login Varchar (30),   password Varchar (30),   email Varchar (30))";
+            String stringSQL = "CREATE TABLE UserTable2 ( id INTEGER PRIMARY KEY  ,login Varchar (30),   password Varchar (30),   email Varchar (30))";
 
             state.executeUpdate(stringSQL);
             conn.close();
         } catch (Exception e) {
-            System.out.print(e.getMessage());
+            System.out.println(e.getMessage());
         }
 
     }
